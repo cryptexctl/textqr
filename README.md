@@ -21,14 +21,14 @@ A simple web application that generates text-based QR codes for automated tools 
 
 ```bash
 # Using curl
-curl -A "curl" "https://your-domain.com/?url=https://example.com"
+curl -A "curl" "https://cryptexctl.github.io/textqr/?url=https://example.com"
 
 # Using wget
-wget --user-agent="wget" "https://your-domain.com/?url=https://example.com"
+wget --user-agent="wget" "https://cryptexctl.github.io/textqr/?url=https://example.com"
 
 # Using Python
 import requests
-response = requests.get('https://your-domain.com/', 
+response = requests.get('https://cryptexctl.github.io/textqr/', 
                        params={'url': 'https://example.com'},
                        headers={'User-Agent': 'python'})
 print(response.text)
