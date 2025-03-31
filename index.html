@@ -102,14 +102,14 @@ This tool generates text-based QR codes for automated tools.
 To get a text QR code, use one of the following methods:
 
 1. Using curl:
-   curl -A "curl" https://your-domain.com
+   curl -A "curl" https://cryptexctl.github.io/textqr/
 
 2. Using wget:
-   wget --user-agent="wget" https://your-domain.com
+   wget --user-agent="wget" https://cryptexctl.github.io/textqr/
 
 3. Using Python:
    import requests
-   response = requests.get('https://your-domain.com', headers={'User-Agent': 'python'})
+   response = requests.get('https://cryptexctl.github.io/textqr/', headers={'User-Agent': 'python'})
    print(response.text)
 
 The tool will return a text-based QR code when accessed with these user agents.
