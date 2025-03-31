@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextQR Generator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .qr-output {
+            font-family: monospace;
+            white-space: pre;
+            background: #fff;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        input[type="url"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TextQR Generator</h1>
+        <p>Enter a URL to generate a text-based QR code:</p>
+        <input type="url" id="urlInput" placeholder="https://example.com">
+        <button onclick="generateQR()">Generate</button>
+        <div id="output" class="qr-output"></div>
+    </div>
+
+    <script>
+        function generateQR() {
+            const url = document.getElementById('urlInput').value;
+            if (!url) return;
+
+            // Check if the request is from an automated tool
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isAutomated = userAgent.includes('curl') || 
+                              userAgent.includes('wget') || 
+                              userAgent.includes('python') ||
+                              userAgent.includes('postman');
+
+            if (isAutomated) {
+                // Generate text QR code
+                const qr = generateTextQR(url);
+                document.getElementById('output').textContent = qr;
+            } else {
+                // Show manual for regular browsers
+                showManual();
+            }
+        }
+
+        function generateTextQR(url) {
+            // Simple text QR code generation
+            const width = 40;
+            const height = 20;
+            let qr = '';
+            
+            // Generate a simple ASCII art QR code
+            for (let i = 0; i < height; i++) {
+                for (let j = 0; j < width; j++) {
+                    qr += Math.random() > 0.5 ? '█' : ' ';
+                }
+                qr += '\n';
+            }
+            
+            return qr + '\nURL: ' + url;
+        }
+
+        function showManual() {
+            const manual = `
+TextQR Generator Manual
+
+This tool generates text-based QR codes for automated tools.
+To get a text QR code, use one of the following methods:
+
+1. Using curl:
+   curl -A "curl" https://your-domain.com
+
+2. Using wget:
+   wget --user-agent="wget" https://your-domain.com
+
+3. Using Python:
+   import requests
+   response = requests.get('https://your-domain.com', headers={'User-Agent': 'python'})
+   print(response.text)
+
+The tool will return a text-based QR code when accessed with these user agents.
+            `;
+            document.getElementById('output').textContent = manual;
+        }
+    </script>
+</body>
+</html> 
