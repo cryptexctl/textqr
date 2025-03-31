@@ -29,7 +29,7 @@ $isAutomated = stripos($userAgent, 'curl') !== false ||
 if ($isAutomated) {
     if (empty($url)) {
         echo "Error: URL parameter is required\n";
-        echo "Usage: curl -A \"curl\" \"https://your-domain.com/?url=https://example.com\"\n";
+        echo "Usage: curl -A \"curl\" \"https://cryptexctl.github.io/textqr/?url=https://example.com\"\n";
         exit(1);
     }
     
@@ -90,7 +90,7 @@ if ($isAutomated) {
         <h1>TextQR Generator</h1>
         <p>Enter a URL to generate a text-based QR code:</p>
         <form method="GET">
-            <input type="url" name="url" placeholder="https://example.com" required>
+            <input type="url" name="url" placeholder="https://cryptexctl.github.io/textqr/" required>
             <button type="submit">Generate</button>
         </form>
         <?php if (!empty($url)): ?>
